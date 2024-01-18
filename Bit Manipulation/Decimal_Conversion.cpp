@@ -18,5 +18,7 @@ int main()
     cout << ~5 << endl; // This will give -(x+1)
     // This doesnot simply imply to unsigned int
     cout << ~(~5) << endl;
+    cout << (5<<2) << endl;//   a<<2^b
+    cout << (5>>2) << endl;//   a>>2^b
     return 0;
 }
