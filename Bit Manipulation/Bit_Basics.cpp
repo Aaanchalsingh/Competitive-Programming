@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-int get_ith_bit(int k, int x)
+bool get_ith_bit(int k, int x)
 {
-    x = x >> k;
-    return x & 1;
+    return (1<<k) & x;
 }
 int set_ith_bit(int k, int x)
 {
-    x = x | (1 << x);
-    return x | 1;
+    return x | (1 << k);
 }
 int clear_ith_bit(int i, int x)
 {
@@ -26,8 +24,7 @@ int countsetbits(int n)
 }
 int update_bits(int x,int i){
     if(get_ith_bit(i,x)) clear_ith_bit(i,x);
-    else set_ith_bit(i,x)
-
+    else set_ith_bit(i,x);
 }
 int clear_range_of_bits(int i, int j, int n)
 {
