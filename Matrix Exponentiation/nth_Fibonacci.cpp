@@ -1,6 +1,7 @@
 // FIBONACCI IN LOG(N) TIME LOG(N) SPACE
 #include <bits/stdc++.h>
 using namespace std;
+const int mod = 1e9 + 7;
 class Mat
 {
 public:
@@ -46,7 +47,7 @@ public:
             for (int j = 0; j < size; j++)
             {
                 for (int k = 0; k < size; k++)
-                    res.matrix[i][j] += matrix[i][k] * B.matrix[k][j];
+                    res.matrix[i][j] += (matrix[i][k] * B.matrix[k][j])%mod;
             }
         }
         return res;
@@ -59,7 +60,7 @@ public:
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
-                res.matrix[i][j] += matrix[i][j] * B;
+                res.matrix[i][j] += (matrix[i][j] * B)%mod;
         }
         return res;
     }
@@ -79,6 +80,15 @@ public:
         }
         return res;
     }
+    int fib(int n)
+    {
+        if (n <= 1)
+            return n;
+        Mat T(2);
+        T.matrix = {{1, 1}, {1, 0}};
+        T = T ^ (n - 1);
+        return T.matrix[0][0];
+    }
 };
 int main()
 {
@@ -93,5 +103,6 @@ int main()
     d.print();
     d = d ^ 2;
     d.print();
+    cout << d.fib(45);
     return 0;
 }
