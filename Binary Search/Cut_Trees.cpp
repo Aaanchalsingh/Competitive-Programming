@@ -3,24 +3,17 @@
 using namespace std;
 bool canweplace(int v[], int k, int target, int n)
 {
-    long long int sum = 0, c = 1;
-    k--;
+    long long int sum = 0;
     for (int i = 0; i < n; i++)
     {
-        if (v[i] > target)
-            return false;
-        if (sum + v[i] > target)
-        {
-            sum = 0;
-            k--;
-        }
-        sum += v[i];
+        if (v[i] - target > 0)
+            sum += v[i] - target;
     }
-    return k >= 0;
+    return sum >= k;
 }
 int main()
 {
-    int n = 4, v[] = {20, 15, 10, 17}, k = 7, sum = 0, maxi = -1e9;
+    int n = 5, v[] = {4, 42, 40, 26, 46}, k = 20, sum = 0, maxi = -1e9;
     for (int i = 0; i < n; i++)
         maxi = max(maxi, v[i]);
     int low = 0, high = maxi, mid = 0, ans = -1;
@@ -30,10 +23,10 @@ int main()
         if (canweplace(v, k, mid, n))
         {
             ans = mid;
-            high = mid - 1;
+            low = mid + 1;
         }
         else
-            low = mid + 1;
+            high = mid - 1;
     }
     cout << ans;
     return 0;
