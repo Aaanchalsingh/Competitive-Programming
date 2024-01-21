@@ -73,6 +73,3 @@ int main()
     cout << ans;
     return 0;
 }
-// painters partitions
-// min no. books/pages
-// EK SPOJ

@@ -6,7 +6,6 @@ int main()
     int n = v.size();
     vector<int> ans(n, 1);
     stack<int> st;
-
     for (int i = 0; i < n; i++)
     {
         while (!st.empty() && v[st.top()] < v[i]) st.pop();
