@@ -1,4 +1,4 @@
-// SPOJ Question
+// SPOJ Question PRATA
 #include <bits/stdc++.h>
 using namespace std;
 bool canweplace(vector<int> &v, int k, int target)
