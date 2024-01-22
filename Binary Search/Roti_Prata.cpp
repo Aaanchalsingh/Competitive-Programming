@@ -54,7 +54,7 @@ bool canweplace2(vector<int> &v, int k, int target)
 }
 int main()
 {
-    int n = 4, k = 10;
+    int n = 4, k = 0;
     vector<int> v{1, 2, 3, 4};
     sort(v.begin(), v.end());
     int low = 0, high = ((k / 2) * (v[0] + k)), mid = 0, ans = -1;
