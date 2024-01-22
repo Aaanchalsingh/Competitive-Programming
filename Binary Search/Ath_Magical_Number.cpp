@@ -1,8 +1,7 @@
 // Ath Magical Number
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int main()
-{
+int main(){
     int A = 8, B = 2, C = 3;
     int low = 0, high = min(B, C) * A, mid = 0, ans = -1;
     int LCM = (B * C) / __gcd(B, C);
