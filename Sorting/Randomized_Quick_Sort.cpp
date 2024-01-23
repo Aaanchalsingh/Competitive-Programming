@@ -11,7 +11,7 @@ void getRandom(vector<int> &v)
     int n = v.size();
     for (int i = n - 1; i > 0; i--)
     {
-        int j = get(0, i - 1);
+        int j = rand() % i + 1;
         swap(v[i], v[j]);
     }
 }
@@ -45,7 +45,7 @@ int main()
 {
     vector<int> v{5, 4, 3, 2, 6, 7, 8, 1, 0, 9};
     getRandom(v);
-
+    Quick_Sort(v, 0, v.size());
     for (auto x : v)
         cout << x << " ";
 

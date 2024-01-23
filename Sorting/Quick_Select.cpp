@@ -1,4 +1,4 @@
-// QUICK SORT O(NlogN)
+// QUICK SELECT O(N) Find Kth Smallest Element
 #include <bits/stdc++.h>
 using namespace std;
 int Partition(vector<int> &A, int low, int high)
@@ -23,20 +23,20 @@ int Quick_Select(vector<int> &A, int low, int high, int k)
     if (low < high)
     {
         mid = Partition(A, low, high);
-        if (k == (mid - 1))
-            return A[mid - 1];
+        if (k == mid)
+            return A[mid];
         if (mid > k)
             Quick_Select(A, low, mid, k);
         else
-            Quick_Select(A, mid + 1, high, k - (mid + 1));
+            Quick_Select(A, mid + 1, high, k);
     }
-    return -1;
+    else
+        return -1;
 }
 int main()
 {
     vector<int> v{5, 4, 3, 2, 6, 7, 8, 1, 0, 9};
-    Quick_Select(v, 0, v.size(), 5);
-    for (auto x : v)
-        cout << x << " ";
+    for (int i = 0; i < v.size(); i++)
+        cout << Quick_Select(v, 0, v.size(), i + 1) << " ";
     return 0;
 }
