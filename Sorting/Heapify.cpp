@@ -60,8 +60,9 @@ public:
         return v[0];
     }
     /*
-    Creating heap inplace
-    for(int i=n/2;i>=0;i--){
+    Creating/Building a heap inplace O(N) Time Complexity
+    heapsort O(NLogN) but inplace remove it like before in this code
+     for(int i=n/2;i>=0;i--){
         heapify(i);
     }
     */
