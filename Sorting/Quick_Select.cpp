@@ -17,17 +17,20 @@ int Partition(vector<int> &A, int low, int high)
     swap(A[low], A[j]);
     return j;
 }
-void Quick_Select(vector<int> &A, int low, int high, int k)
+int Quick_Select(vector<int> &A, int low, int high, int k)
 {
     int mid;
     if (low < high)
     {
         mid = Partition(A, low, high);
+        if (k == (mid - 1))
+            return A[mid - 1];
         if (mid > k)
             Quick_Select(A, low, mid, k);
         else
-            Quick_Select(A, mid + 1, high, k);
+            Quick_Select(A, mid + 1, high, k - (mid + 1));
     }
+    return -1;
 }
 int main()
 {
