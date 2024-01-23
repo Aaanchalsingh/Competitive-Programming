@@ -17,20 +17,22 @@ int Partition(vector<int> &A, int low, int high)
     swap(A[low], A[j]);
     return j;
 }
-void Quick_Sort(vector<int> &A, int low, int high)
+void Quick_Select(vector<int> &A, int low, int high, int k)
 {
     int mid;
     if (low < high)
     {
         mid = Partition(A, low, high);
-        Quick_Sort(A, low, mid);
-        Quick_Sort(A, mid + 1, high);
+        if (mid > k)
+            Quick_Select(A, low, mid, k);
+        else
+            Quick_Select(A, mid + 1, high, k);
     }
 }
 int main()
 {
     vector<int> v{5, 4, 3, 2, 6, 7, 8, 1, 0, 9};
-    Quick_Sort(v, 0, v.size());
+    Quick_Select(v, 0, v.size(), 5);
     for (auto x : v)
         cout << x << " ";
     return 0;
