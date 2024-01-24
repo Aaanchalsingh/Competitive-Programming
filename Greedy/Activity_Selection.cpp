@@ -27,14 +27,14 @@ int main()
             currEnd = newEnd;
         }
     }
-    cout << ans;
+    cout << ans<<endl;
     // Another Approach
     vector<pair<int, int>> v;
     for (int i = 0; i < n; i++)
         v.push_back(make_pair(end[i], start[i]));
     sort(v.begin(), v.end());
     int x = 0;
-    int ans = 0;
+    ans = 0;
     for (int i = 0; i < n; i++)
     {
         if (v[i].second > x)
