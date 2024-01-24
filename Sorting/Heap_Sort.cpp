@@ -38,7 +38,6 @@ void heapSort(vector<int> &v)
         heapify(0, i, v);
     }
 }
-
 int main()
 {
     vector<int> v{2, 1, 3, 7, 5, 3, 2, 5, 89, 9, 4, 23};
