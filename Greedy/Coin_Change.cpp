@@ -28,8 +28,6 @@ int DP_Brute(vector<int> v, int target, int i)
         else
             return 1e9;
     }
-    if (target <= 0)
-        return 1e9;
     int nottake = DP_Brute(v, target, i - 1);
     int take = 1e9;
     if (target - v[i] >= 0)
@@ -53,17 +51,38 @@ int DP_Memoized(vector<int> v, int target, int i, vector<vector<int>> &dp)
         take = 1 + DP_Memoized(v, target - v[i], i, dp);
     dp[i][target] = min(take, nottake);
 }
-int DP_Tabulation(vector<int> v, int target, int i, vector<vector<int>> &dp)
+int DP_Tabulation(vector<int> coins, int amount)
 {
+    int n = coins.size();
+    int dp[n + 1][amount + 1];
+    for (int i = 0; i < n + 1; i++)
+        dp[i][0] = 0;
+    for (int i = 1; i < amount + 1; i++)
+        dp[0][i] = 1e9;
+    for (int i = 1; i < n + 1; i++)
+    {
+        for (int j = 1; j < amount + 1; j++)
+        {
+            if (coins[i - 1] <= j)
+            {
+                dp[i][j] = min(1 + dp[i][j - coins[i - 1]], dp[i - 1][j]);
+            }
+            else
+                dp[i][j] = dp[i - 1][j];
+        }
+    }
+    if (dp[n][amount] == 1e9)
+        return -1;
+    return dp[n][amount];
 }
 int main()
 {
     vector<int> v{1, 2, 5, 10, 20, 50, 100, 200, 500};
-    int target = 458;
+    int target = 10;
     cout << Greedy(v, target) << endl;
     cout << DP_Brute(v, target, v.size() - 1) << endl;
     vector<vector<int>> dp(v.size() + 1, vector<int>(target + 1, -1));
     cout << DP_Memoized(v, target, v.size() - 1, dp) << endl;
-    cout << DP_Tabulation(v, target, v.size() - 1, dp) << endl;
+    cout << DP_Tabulation(v, target) << endl;
     return 0;
 }
