@@ -75,14 +75,35 @@ int DP_Tabulation(vector<int> coins, int amount)
         return -1;
     return dp[n][amount];
 }
+int Best_Tabulation(vector<int> coins, int amount)
+{
+    int ans = 1e9;
+    vector<int> dp(amount, 1e9);
+    dp[0] = 0;
+    for (int i = 1; i <= amount; i++)
+    {
+        ans = 1e9;
+        for (auto x : coins)
+        {
+            if ((amount - x) >= 0 and dp[amount] - x != 1e9)
+            {
+                ans = min(ans, dp[amount - x] + 1);
+            }
+        }
+        dp[i]=ans;
+    }
+    return dp[amount];
+}
+
 int main()
 {
     vector<int> v{1, 2, 5, 10, 20, 50, 100, 200, 500};
-    int target = 10;
+    int target = 458;
     cout << Greedy(v, target) << endl;
     cout << DP_Brute(v, target, v.size() - 1) << endl;
     vector<vector<int>> dp(v.size() + 1, vector<int>(target + 1, -1));
     cout << DP_Memoized(v, target, v.size() - 1, dp) << endl;
     cout << DP_Tabulation(v, target) << endl;
+    cout << Best_Tabulation(v, target) << endl;
     return 0;
 }
