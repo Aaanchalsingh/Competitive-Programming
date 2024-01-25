@@ -85,12 +85,12 @@ int Best_Tabulation(vector<int> coins, int amount)
         ans = 1e9;
         for (auto x : coins)
         {
-            if ((amount - x) >= 0 and dp[amount] - x != 1e9)
+            if ((i - x) >= 0 and dp[i] - x != 1e9)
             {
-                ans = min(ans, dp[amount - x] + 1);
+                ans = min(ans, dp[i - x] + 1);
             }
         }
-        dp[i]=ans;
+        dp[i] = ans;
     }
     return dp[amount];
 }
