@@ -3,7 +3,7 @@
 using namespace std;
 bool cmp(vector<int> v1, vector<int> v2)
 {
-    return v1[0] < v2[0];
+    return v1[0] > v2[0];
 }
 int main()
 {
@@ -11,13 +11,12 @@ int main()
     for (int i = 0; i < v.size(); i++)
         v[i][0] = v[i][1] / v[i][2];
     sort(v.begin(), v.end(), cmp);
-    int n = v.size(), w = 50, max_value = 0, profit = 0;
+    int n = v.size(), w = 50,profit = 0;
     for (int i = 0; i < n; i++)
     {
         if (w >= v[i][2])
         {
             profit += v[i][1];
-            cout << profit << endl;
             w -= v[i][2];
         }
         else
