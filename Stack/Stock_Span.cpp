@@ -8,17 +8,19 @@ int main()
     stack<int> st;
     for (int i = 0; i < n; i++)
     {
-        while (!st.empty() && v[st.top()] < v[i]) st.pop();
-        if (st.empty()) ans[i] = i + 1;
-        if(!st.empty()) ans[i] = i - st.top();
+        while (!st.empty() && v[st.top()] < v[i])
+            st.pop();
+        if (st.empty())
+            ans[i] = i + 1;
+        if (!st.empty())
+            ans[i] = i - st.top();
         st.push(i);
     }
     for (auto x : ans)
         cout << x << " ";
     return 0;
 }
-//HOMEWORK
-// 1. MAXIMUM SUBARRAY SUM
-// 2. HISTOGRAM AREA PROBLEM
-// 3. MAXIMUM AREA OF THE RECTANGLE WITH ALL 1S IN 2D ARRAY
-
+// HOMEWORK
+//  1. MAXIMUM SUBARRAY SUM
+//  2. HISTOGRAM AREA PROBLEM
+//  3. MAXIMUM AREA OF THE RECTANGLE WITH ALL 1S IN 2D ARRAY

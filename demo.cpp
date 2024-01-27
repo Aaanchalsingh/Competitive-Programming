@@ -1,29 +1,33 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+
 using namespace std;
+
 int main()
 {
-    vector<int> v{5, 1, 3, 8, 7, 2, 6, 9};
-    int n = v.size();
-    int k = 14;
-    sort(v.begin(), v.end());
-    int j = 1, i = 0;
-    while (i < n)
+    int t;
+    cin >> t;
+
+    while (t--)
     {
-        if (j == n )
+        string x, y;
+        int n;
+        cin >> n;
+        cin >> x >> y;
+        int correct = 0, xc = 0, yc = 0;
+        for (int i = 0; i < n; i++)
         {
-            i++;
-            j = i + 1;
+            if (x[i] != y[i])
+            {
+                if (x[i] == '1')
+                    xc++;
+                if (y[i] == '1')
+                    yc++;
+            }
         }
-        if (v[i] + v[j] == k)
-        {
-            cout << v[i] << " " << v[j] << endl;
-            i++;
-            j++;
-        }
-        else if (v[i] + v[j] > k)
-            j++;
-        else
-            i++;
+        cout << max(xc, yc) << endl;
     }
+
     return 0;
 }
