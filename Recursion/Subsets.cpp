@@ -1,24 +1,27 @@
+
 #include <bits/stdc++.h>
 using namespace std;
- void solve(vector<int>& v, vector<vector<int>>& ans, int i,vector<int>& nums) {
-        if (i >= nums.size()) {
-            ans.push_back(v);
-            return;
+void solve(vector<int> arr, vector<int> &v, int i)
+{
+    if (i >= arr.size())
+    {
+        for (auto x : v)
+        {
+            cout << x << " ";
         }
-        v.push_back(nums[i]);
-        solve(v, ans, i + 1,nums);
-        v.pop_back();
-        solve(v, ans, i+1,nums);
+        cout << endl;
         return;
     }
-int main(){
-
-return 0;
+    v.push_back(arr[i]);
+    solve(arr, v, i + 1);
+    v.pop_back();
+    solve(arr, v, i + 1);
+    return;
 }
-class Solution {
-public:
-
-    vector<vector<int>> subsets(vector<int>& nums) {
-
-    }
-};
+int main()
+{
+    vector<int> arr{1, 2, 3};
+    vector<int> v;
+    solve(arr, v, 0);
+    return 0;
+}
