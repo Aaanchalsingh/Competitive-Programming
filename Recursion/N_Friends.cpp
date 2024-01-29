@@ -10,5 +10,5 @@ int main()
 {
     vector<char> nums{'A', 'B', 'C', 'D'};
     int n = nums.size();
-    cout << f(n);
+    cout << f(3);
 }
