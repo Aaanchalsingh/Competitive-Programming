@@ -6,7 +6,7 @@
 using namespace std;
 
 // PRINT IN ALL 4 SIDES
-void dfs(int i, int j, vector<vector<int>> &board, int n, vector<string> &v, string &pattern)
+void dfs(int i, int j, vector<vector<int>> board, int n, vector<string> &v, string &pattern)
 {
     if (i < 0 || i >= n || j < 0 || j >= n || board[i][j] == 0)
         return;
@@ -67,11 +67,13 @@ int dfs_8_Sides(int i, int j, vector<vector<int>> board, int n)
 }
 int main()
 {
-    vector<vector<int>> board{{1, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+    vector<vector<int>> board{{1, 0, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}};
     int ans = 0, n = board.size();
     string str = "";
     vector<string> v;
     dfs(0, 0, board, n, v, str);
+    for (auto x : v)
+        cout << x << " ";
     cout << endl;
     cout << dfs_8_Sides(0, 0, board, n) << endl;
     return 0;
