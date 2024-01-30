@@ -5,6 +5,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// PRINT IN ALL 4 SIDES
 void dfs(int i, int j, vector<vector<int>> &board, int n, vector<string> &v, string &pattern)
 {
     if (i < 0 || i >= n || j < 0 || j >= n || board[i][j] == 0)
@@ -43,6 +44,7 @@ void dfs(int i, int j, vector<vector<int>> &board, int n, vector<string> &v, str
     }
 }
 
+// MOVE IN ALL 8 SIDES
 int dfs_8_Sides(int i, int j, vector<vector<int>> board, int n)
 {
     if (i < 0 || j < 0 || i > n || j > n || board[i][j] == 0)
