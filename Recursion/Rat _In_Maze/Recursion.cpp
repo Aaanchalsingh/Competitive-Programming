@@ -42,15 +42,35 @@ void dfs(int i, int j, vector<vector<int>> &board, int n, vector<string> &v, str
         }
     }
 }
+
+int dfs_8_Sides(int i, int j, vector<vector<int>> board, int n)
+{
+    if (i < 0 || j < 0 || i > n || j > n || board[i][j] == 0)
+        return 0;
+    if (i == n - 1 && j == n - 1)
+        return 1;
+    int ans = 0;
+    vector<int> x{-1, -1, 0, 1, 1, 1, 0, -1};
+    vector<int> y{0, 1, 1, 1, 0, -1, -1, -1};
+    for (int k = 0; k < 8; k++)
+    {
+        int ni = i + x[k];
+        int nj = j + y[k];
+        board[i][j] = 0;
+        if (ni >= 0 && ni < n && nj >= 0 && nj < n && board[ni][nj] == 1)
+            ans += dfs_8_Sides(ni, nj, board, n);
+        board[i][j] = 1;
+    }
+    return ans;
+}
 int main()
 {
-    vector<vector<int>> board{{1, 0, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}};
+    vector<vector<int>> board{{1, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
     int ans = 0, n = board.size();
-    vector<string> v;
     string str = "";
+    vector<string> v;
     dfs(0, 0, board, n, v, str);
-    for (auto x : v)
-        cout << x << " ";
-
+    cout << endl;
+    cout << dfs_8_Sides(0, 0, board, n) << endl;
     return 0;
 }
