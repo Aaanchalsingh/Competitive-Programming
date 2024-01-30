@@ -1,9 +1,9 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 // RAT IN A MAZE WITH HURDLES
 // PRINT THE PATH TO REACH A CERTAIN POINT BY RAT
 // FOR COUNTING INSTEAD OF VOID TAKE INT AND RETURN 1 WHEN YOU WERE EARLIER PRINTING
-
-#include <bits/stdc++.h>
-using namespace std;
 
 // PRINT IN ALL 4 SIDES
 void dfs(int i, int j, vector<vector<int>> board, int n, vector<string> &v, string &pattern)
