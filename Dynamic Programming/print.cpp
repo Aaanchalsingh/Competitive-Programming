@@ -5,12 +5,18 @@ using namespace std;
 void print(vector<vector<int>> &v)
 {
     int n = v.size();
-    for (int k = 1; k < n; k++)
+    for (int k = 1; k < 2 * n; k++)
     {
-        for (int j = k; j < n; j++)
+        for (int j = k; j < 2 * n; j++)
         {
             int i = j - k;
-            cout << v[i][j] << " ";
+            if (k < n && j < n)
+                cout << v[i][j] << " ";
+            else if (k > n)
+            {
+                i = j - n - (k - n);
+                cout << v[j - n][i] << " ";
+            }
         }
         cout << endl;
     }
