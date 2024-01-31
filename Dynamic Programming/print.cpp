@@ -12,7 +12,7 @@ void print(vector<vector<int>> &v)
             int i = j - k;
             if (k < n && j < n)
                 cout << v[i][j] << " ";
-            else if (k > n)
+            else if (k >= n)
             {
                 i = j - n - (k - n);
                 cout << v[j - n][i] << " ";
