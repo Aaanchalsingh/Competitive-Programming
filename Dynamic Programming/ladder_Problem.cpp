@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-int solve(vector<int> &v, int k, int n)
-{
+int solve(vector<int> &v, int k, int n){
     if (n == 0)
         return 1;
-
     int ans = 0;
     for (int i = 1; i <= k && n - i >= 0; i++)
     {
