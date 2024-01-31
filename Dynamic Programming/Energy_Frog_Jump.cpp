@@ -6,7 +6,7 @@ int solve(vector<int> v, int i)
     if (i == 0)
         return 0;
     int take = solve(v, i - 1) + abs(v[i] - v[i - 1]);
-    int nottake = 100;
+    int nottake = 1e9;
     if (i - 2 < v.size())
         nottake = solve(v, i - 2) + abs(v[i] - v[i - 2]);
     return min(take, nottake);
@@ -18,7 +18,7 @@ int memo(vector<int> v, int i, vector<int> &dp)
     if (dp[i] != -1)
         return dp[i];
     int take = memo(v, i - 1, dp) + abs(v[i] - v[i - 1]);
-    int nottake = 100;
+    int nottake = 1e9;
     if (i - 2 < v.size())
         nottake = memo(v, i - 2, dp) + abs(v[i] - v[i - 2]);
     return dp[i] = min(take, nottake);
