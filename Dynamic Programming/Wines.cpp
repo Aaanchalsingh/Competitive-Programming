@@ -50,7 +50,7 @@ int main()
     int n = v.size();
     vector<vector<int>> dp(n, vector<int>(n, -1));
     cout << solve(0, n - 1, v, 1) << endl;
-    cout << memo(0, n - 1, v, 1, dp);
+    cout << memo(0, n - 1, v, 1, dp) << endl;
     cout << tabulation(v);
     return 0;
 }
