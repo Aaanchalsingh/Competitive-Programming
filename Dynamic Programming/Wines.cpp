@@ -28,7 +28,6 @@ int tabulation(vector<int> &v)
     {
         dp[i][i] = v[i] * n;
     }
-
     int year = n - 1;
     for (int k = 1; k < n; k++)
     {
