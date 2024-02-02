@@ -4,10 +4,8 @@ using namespace std;
 // Shortest Common Subsequence = m+n-LCS
 
 // Obtaining LCS Bottom up
-void lcs(string x, string y, int m, int n, vector<vector<int>> &dp)
-{
-    for (int i = 1; i <= m; i++)
-    {
+void lcs(string x, string y, int m, int n, vector<vector<int>> &dp){
+    for (int i = 1; i <= m; i++){
         for (int j = 1; j <= n; j++)
         {
             if (x[i - 1] == y[j - 1])
