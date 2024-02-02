@@ -20,9 +20,6 @@ int solve(string x, string y, int m, int n, vector<vector<int>> &dp)
 }
 int minDistance(string w1, string w2)
 {
-}
-int minDistance(string w1, string w2)
-{
     int m = w1.size(), n = w2.size();
     vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
     for (int i = 0; i <= n; i++)

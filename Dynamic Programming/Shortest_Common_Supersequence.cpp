@@ -4,12 +4,17 @@ using namespace std;
 // Shortest Common Subsequence = m+n-LCS
 
 // Obtaining LCS Bottom up
-void lcs(string x, string y, int m, int n, vector<vector<int>> &dp){
-    for (int i = 1; i <= m; i++){
+void lcs(string x, string y, int m, int n, vector<vector<int>> &dp)
+{
+    for (int i = 1; i <= m; i++)
+    {
         for (int j = 1; j <= n; j++)
         {
             if (x[i - 1] == y[j - 1])
+            {
                 dp[i][j] = 1 + dp[i - 1][j - 1];
+                cout << x[i - 1];
+            }
             else
                 dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);
         }
@@ -24,7 +29,7 @@ int solve_recurrence(string x, string y, int m, int n)
     if (x[m - 1] == y[n - 1])
         return 1 + solve_recurrence(x, y, m - 1, n - 1);
     else
-       return max(solve_recurrence(x, y, m, n - 1), solve_recurrence(x, y, m - 1, n));
+        return max(solve_recurrence(x, y, m, n - 1), solve_recurrence(x, y, m - 1, n));
 }
 
 // Printing LCS
