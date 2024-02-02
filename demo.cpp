@@ -1,33 +1,26 @@
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main()
+int longest_Seq(vector<int> v, int n)
 {
-    int t;
-    cin >> t;
-
-    while (t--)
+    vector<int> dp(n + 1, 1);
+    int ans = 0;
+    for (int i = 1; i < n; i++)
     {
-        string x, y;
-        int n;
-        cin >> n;
-        cin >> x >> y;
-        int correct = 0, xc = 0, yc = 0;
-        for (int i = 0; i < n; i++)
+        for (int j = 0; j < i; j++)
         {
-            if (x[i] != y[i])
+            if (v[i] >= v[j])
             {
-                if (x[i] == '1')
-                    xc++;
-                if (y[i] == '1')
-                    yc++;
+                dp[i] = max(dp[i], 1 + dp[j]);
+                ans = max(ans, dp[i]);
             }
         }
-        cout << max(xc, yc) << endl;
     }
-
-    return 0;
+    return ans;
+}
+int main()
+{
+    vector<int> v{3, 2, 4, 1, 7, 8, 6, 10, 9};
+    int n = v.size();
+    cout << longest_Seq(v, n);
 }
