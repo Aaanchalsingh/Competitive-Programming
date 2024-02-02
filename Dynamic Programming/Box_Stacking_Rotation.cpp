@@ -9,21 +9,21 @@ void Generate_All_Possibilties(vector<vector<int>> &v)
     vector<vector<int>> dp(n + 1, vector<int>(3, 0));
     for (int i = 0; i < n; i++)
     {
-        int x = v[i][0];
-        int y = v[i][1];
-        int z = v[i][2];
-        for (int j = 0; j < n; j++)
-        {
-            vector<int> temp;
-            temp.push_back(v[i][j]);
-            for(int  k=0;k<=2;k++){
-                if(k!=j){
-                    if(v[i][k])
-                }
-            }
+        // int x = v[i][0];
+        // int y = v[i][1];
+        // int z = v[i][2];
+        // for (int j = 0; j < n; j++)
+        // {
+        //     vector<int> temp;
+        //     temp.push_back(v[i][j]);
+        //     for(int  k=0;k<=2;k++){
+        //         if(k!=j){
+        //             if(v[i][k])
+        //         }
+        //     }
 
 
-        }
+        // }
     }
 }
 
