@@ -18,6 +18,17 @@ void lcs(string x, string y, int m, int n, vector<vector<int>> &dp)
     }
 }
 
+// Recursion LCS
+int solve_recurrence(string x, string y, int m, int n)
+{
+    if (m <= 0 || n <= 0)
+        return 0;
+    if (x[m - 1] == y[n - 1])
+        return 1 + solve_recurrence(x, y, m - 1, n - 1);
+    else
+       return max(solve_recurrence(x, y, m, n - 1), solve_recurrence(x, y, m - 1, n));
+}
+
 // Printing LCS
 void Print_LCS(string x, string y, int m, int n, vector<vector<int>> &dp)
 {
@@ -85,6 +96,7 @@ int main()
     int m = x.length();
     int n = y.length();
     vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+    cout << solve_recurrence(x, y, m, n) << endl;
     Print_LCS(x, y, m, n, dp);
     shortestCommonSupersequence(x, y, m, n, dp);
 
