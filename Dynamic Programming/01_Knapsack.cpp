@@ -42,6 +42,24 @@ int bottom_up(vector<int> wt, vector<int> cost, int cap)
     }
     return dp[n][cap];
 }
+void PrintingKnapSack(vector<vector<int>> &dp, vector<int> wt, vector<int> cost, int cap)
+{
+    int n = wt.size();
+    int res = dp[n][cap];
+    int capacity = cap;
+    cout << res << endl;
+    for (int i = n; i > 0 && res > 0; i--)
+    {
+        if (res == dp[i - 1][cap])
+            continue;
+        else
+        {
+            cout << wt[i - 1] << endl;
+            res = res - cost[i - 1];
+            cap = cap - wt[i - 1];
+        }
+    }
+}
 int main()
 {
     vector<int> wt{1, 5, 3, 7};
@@ -52,5 +70,6 @@ int main()
     vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, -1));
     cout << memo(wt, cost, capacity, n - 1, dp) << endl;
     cout << bottom_up(wt, cost, capacity) << endl;
+    PrintingKnapSack(dp, wt, cost, capacity);
     return 0;
 }
