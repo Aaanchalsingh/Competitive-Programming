@@ -11,37 +11,39 @@ int solve(string str, int limit)
     for (int i = 0; i < n; i++)
         mp[str[i]]++;
     for (auto x : mp)
-    {
         ans.push_back(x.second);
-    }
     sort(ans.begin(), ans.end(), greater<int>());
-    // 3 2 1
     n = ans.size();
     for (int i = 0; i < n; i++)
     {
-        if (ans[i] > limit)
+        if (limit > 0)
         {
-            ans[i] -= limit;
-            break;
+            if (ans[i] > limit)
+            {
+                ans[i] -= limit;
+                break;
+            }
+            else
+            {
+                int key = limit;
+                limit -= ans[i];
+                ans[i] -= key;
+            }
         }
         else
-        {
-            int key = limit;
-            limit -= ans[i];
-            ans[i] -= key;
-        }
+            break;
     }
     int cost = 0;
     for (int i = 0; i < n; i++)
     {
-        cost += (ans[i] * ans[i]);
+        cost += abs(ans[i] * ans[i]);
     }
     return cost;
 }
 int main()
 {
-    string str = "abcbac";
-    int limit = 2;
+    string str = "abcbcc";
+    int limit = 3;
     cout << solve(str, limit);
     return 0;
 }
