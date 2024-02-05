@@ -1,0 +1,19 @@
+. URL Hashing
+
+Implement an algorithm to hash a URL as described.
+
+Suppose the given url ur/ of length n is to be hashed with a string hash_string of length m. Given an integer k, run the ur/ through the following algorithm:
+
+1. Divide the url into blocks of size k starting from the left. The last block can be smaller than k. For example, if url = "https://xyz.com" and k = 4, the blocks are ["http", "s://", "xyz.", "com"].
+
+2. The values of the English characters 'a', 'b', ..., 'z' are 0, 1, ..., 25 respectively and that of ':', '/' and '.' are 26, 27, and 28 respectively. Thus the has value of the block "s://" will be 19 + 26+27+27= 98.
+
+3. For each URL, find the hash value of each block. The hash value is the sum of the values of each character.
+
+4. Replace the block with the (hash value of the block modulo myth character of the string hash_string.
+
+Given the string url, hash_string, and an integer k, find the hashed string.
+
+Example
+
+Suppose url = "https://xyz.com", hash_string = "pqrst", and k = 4.
