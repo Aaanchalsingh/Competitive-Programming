@@ -1,12 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-void dfs(int i, vector<bool> &vis)
+void dfs(int i, vector<bool> &vis, vector<vector<int>> graph)
 {
+    vis[i] = true;
+    cout << i << " ";
+    for (auto child : graph[i])
+    {
+        if (!vis[i])
+            dfs(child, vis, graph);
+    }
+}
+void bfs(){
 
 }
 int main()
 {
-    vector<vector<int>> graph;
+    vector<vector<int>> graph(6);
     vector<bool> vis(6, false);
     int x, y;
     for (int i = 0; i < 5; i++)
@@ -18,7 +27,7 @@ int main()
     for (int i = 1; i <= 5; i++)
     {
         if (!vis[i])
-            dfs(i, vis);
+            dfs(i, vis, graph);
     }
 
     return 0;
