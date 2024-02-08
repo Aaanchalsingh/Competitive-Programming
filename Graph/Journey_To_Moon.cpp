@@ -2,40 +2,38 @@
 
 using namespace std;
 
-int dfs_size(int i, vector<int> adj[], vector<bool> &vis)
+void dfs(int i, vector<int> adj[], vector<bool> &vis, int &size)
 {
     vis[i] = true;
-    int size = 1;
+    size++;
     for (auto x : adj[i])
     {
         if (!vis[x])
         {
-            int z = dfs_size(x, adj, vis);
-            size += z;
+            dfs(x, adj, vis, size);
         }
     }
-    return size;
 }
-int journeyToMoon(int n, vector<vector<int>> v)
+
+long long journeyToMoon(int n, vector<vector<int>> &v)
 {
-    vector<int> adj[n + 1];
-    int result = (n * (n - 1));
-    vector<bool> vis(n + 1, false);
-    for (int i = 0; i < v.size(); i++)
+    vector<int> adj[n];
+    for (auto &edge : v)
     {
-        int cur = v[i][0];
-        for (int j = 0; j < v[i].size(); j++)
-        {
-            adj[cur].push_back(v[i][j]);
-        }
+        adj[edge[0]].push_back(edge[1]);
+        adj[edge[1]].push_back(edge[0]);
     }
+
+    vector<bool> vis(n, false);
+    int result = (n * (n - 1)) / 2;
+
     for (int i = 0; i < n; i++)
     {
-        vector<int> ans;
         if (!vis[i])
         {
-            int k = dfs_size(i, adj, vis);
-            result -= (k * (k - 1)) / 2;
+            int size = 0;
+            dfs(i, adj, vis, size);
+            result -= (size * (size - 1)) / 2;
         }
     }
     return result;
