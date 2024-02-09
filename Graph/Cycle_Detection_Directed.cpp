@@ -1,4 +1,4 @@
-// CYCLE DETECTION USING BFS
+// CYCLE DETECTION FOR DIRECTED USING BFS
 #include <bits/stdc++.h>
 using namespace std;
 
