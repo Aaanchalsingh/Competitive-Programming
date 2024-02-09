@@ -6,6 +6,10 @@
 */
 #include <bits/stdc++.h>
 using namespace std;
+
+void path(){
+
+}
 int main()
 {
 
