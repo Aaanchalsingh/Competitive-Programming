@@ -39,20 +39,17 @@ void BFS(int n, vector<vector<int>> v, vector<int> &output)
     cout << endl;
 }
 // CYCLE DETECTION USING DFS
-bool DFS(int i, vector<bool> &vis, vector<vector<int>> v, int par)
+void DFS(int i, vector<bool> &vis, vector<vector<int>> v, set<int> &st)
 {
     vis[i] = true;
     for (auto x : v[i])
     {
         if (!vis[x])
         {
-            if (DFS(x, vis, v, i))
-                return true;
+            DFS(x, vis, v, st);
         }
-        else if (x != par) // CHECK FOR BACK EDGE {ANCESTOR EDGE WHICH IS NOT PARENT}
-            return true;
     }
-    return false;
+    st.insert(i);
 }
 int main()
 {
@@ -75,18 +72,21 @@ int main()
     int n = 5;
     vector<int> output;
     BFS(n, graph, output);
+     for (int i = 0; i < output.size(); i++)
+        cout << output[i] << " ";
+    cout << endl;
     vector<bool> vis(n + 1, false);
     cout << "Cycle Exists : ";
     bool flag = false;
     for (int i = 0; i < n; i++)
     {
+        set<int> st;
         if (!vis[i])
+            DFS(i, vis, graph, st);
+        if (st.size() != n)
         {
-            if (DFS(i, vis, graph, -1))
-            {
-                flag = true;
-                break;
-            }
+            flag = true;
+            break;
         }
     }
     cout << flag << endl;
