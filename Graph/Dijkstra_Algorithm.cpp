@@ -1,43 +1,43 @@
-/*
-1.DIJKSTRA ALGORITHM
-2.Rod Cutting
-3.Minmum path sum
-4.Cheapest flight with k stops
-*/
 #include <bits/stdc++.h>
 using namespace std;
 
-void path(vector<vector<int>> v)
+void path(vector<vector<int>> v[], int n)
 {
-    int n = v.size();
-    vector<int> dist(n + 1, 1e9);
+    vector<int> dist(n, 1e9);
     dist[0] = 0;
-    queue<pair<int, int>> q;
-    q.push({0, 0});
+    set<pair<int, int>> st;
+    st.insert({0, 0});
     vector<bool> vis(n, false);
-    while (!q.empty())
+    while (!st.empty())
     {
-        int sr = q.front().first;
-        int wt = q.front().second;
-        q.pop();
+        auto it = *st.begin();
+        int wt = it.first;
+        int sr = it.second;
+        st.erase(it);
+        if (vis[sr])
+            continue;
         vis[sr] = true;
-        for (auto x : v[sr])
+        for (auto edge : v[sr])
         {
-            if (!vis[x])
+            int src = edge[0];
+            int weight = edge[1];
+            if (weight + wt < dist[src])
             {
-                if (wt + v[sr][x] < dist[x])
-                {
-                    dist[x] = wt + v[sr][x];
-                    q.push({x, dist[x]});
-                }
+                dist[src] = weight + wt;
+                st.insert({dist[src], src});
             }
         }
     }
-    for (int i = 1; i <= dist.size(); i++)
+    for (int i = 0; i < n; i++)
         cout << dist[i] << " ";
 }
+
 int main()
 {
-
+    vector<vector<int>> graph[] = {
+        {{1, 1}, {2, 6}},
+        {{2, 3}, {0, 1}},
+        {{1, 3}, {0, 6}}};
+    path(graph, 3);
     return 0;
 }
