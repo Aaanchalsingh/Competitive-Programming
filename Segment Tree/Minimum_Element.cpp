@@ -29,6 +29,24 @@ int Minimum_Element_In_Range(vector<int> &tree, int start, int end, int i, int q
         return min(left, Right);
     }
 }
+void update(vector<int> &tree, int start, int end, int i, int index, int key)
+{
+    if (index < start || index > end)
+        return;
+    if (start == end)
+    {
+        tree[index] = key;
+        return;
+    }
+    else
+    {
+        int mid = (start + end) / 2;
+        update(tree, start, mid, 2 * i, index, key);
+        update(tree, mid + 1, end, 2 * i + 1, index, key);
+        tree[i] = min(tree[2 * i], tree[2 * i + 1]);
+        return;
+    }
+}
 int main()
 {
     vector<int> v{3, 5, 1, 6, 2, 7, 4};
@@ -39,5 +57,8 @@ int main()
         cout << x << " ";
     cout << endl;
     cout << Minimum_Element_In_Range(tree, 0, n - 1, 1, 3, 5) << endl;
+    update(tree, 0, n, 1, 4, 12);
+    for (auto x : tree)
+        cout << x << " ";
     return 0;
 }
