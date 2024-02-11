@@ -1,49 +1,83 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int solve(string str, int limit)
+int countMatchingSubarrays(vector<int> &v, vector<int> &p)
 {
-    vector<int> ans;
-    int n = str.size();
-    if (n == 0)
-        return 0;
-    map<char, int> mp;
-    for (int i = 0; i < n; i++)
-        mp[str[i]]++;
-    for (auto x : mp)
-        ans.push_back(x.second);
-    sort(ans.begin(), ans.end(), greater<int>());
-    n = ans.size();
-    for (int i = 0; i < n; i++)
+    int k = p.size(), n = v.size(), j = 0, count = 0; /*[1,4,4,1,3,2,5,3], pattern = [1,0,-1]*/
+    for (int i = 0; i < k; i++)
     {
-        if (limit > 0)
+        if (p[j] == 1)
         {
-            if (ans[i] > limit)
+            if (v[i] < v[i + 1])
             {
-                ans[i] -= limit;
-                break;
+                j++;
             }
-            else
+        }
+        else if (p[j] == 0)
+        {
+            if (v[i] == v[i + 1])
             {
-                int key = limit;
-                limit -= ans[i];
-                ans[i] -= key;
+                j++;
             }
         }
         else
-            break;
+        {
+            if (v[i] > v[i + 1])
+            {
+                j++;
+            }
+        }
     }
-    int cost = 0;
-    for (int i = 0; i < n; i++)
+    if (j == k)
+        count++;
+    j = 0;
+    int i = 1;
+    while (i < n - 1)
     {
-        cost += abs(ans[i] * ans[i]);
+        if (p[j] == 1)
+        {
+            if (v[i] < v[i + 1])
+            {
+                j++;
+            }
+            else
+            {
+                i++;
+                j = 0;
+            }
+        }
+        else if (p[j] == 0)
+        {
+            if (v[i] == v[i + 1])
+            {
+                j++;
+            }
+            else
+            {
+                i++;
+                j = 0;
+            }
+        }
+        else
+        {
+            if (v[i] > v[i + 1])
+            {
+                j++;
+            }
+            else
+            {
+                i++;
+                j = 0;
+            }
+        }
+        if (j == p.size())
+        {
+            count++;
+            j = 0;
+        }
     }
-    return cost;
 }
 int main()
 {
-    string str = "abcbcc";
-    int limit = 3;
-    cout << solve(str, limit);
+
     return 0;
 }
