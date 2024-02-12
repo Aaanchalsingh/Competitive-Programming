@@ -18,6 +18,7 @@ int recursion(vector<int> v, int n, int i, vector<int> &dp)
     return dp[i];
 }
 // O(NlogN)
+/* IMPORTANT */
 int shortest(vector<int> v)
 {
     int n = v.size();
