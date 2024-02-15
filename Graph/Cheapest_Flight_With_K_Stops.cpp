@@ -1,4 +1,4 @@
-// DIKSTRA ALGORITHM VARIANT
+// BELLMANN FORD ALGORITHM VARIANT
 #include <iostream>
 #include <vector>
 using namespace std;

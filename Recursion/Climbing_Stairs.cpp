@@ -17,7 +17,6 @@ void solve(int n, vector<int> &v)
         v.pop_back();
     }
 }
-
 int main()
 {
     int n = 5;
